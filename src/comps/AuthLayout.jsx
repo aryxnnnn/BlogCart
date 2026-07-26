@@ -20,7 +20,7 @@ export default function Protected({children , authentication = true }) {
   } , [authStatus , navigate , authentication])
 
   return (
-    loader ? <LoadingSpinner/> : {children}
+    loader ? <LoadingSpinner/> : children
   )
 }
 
