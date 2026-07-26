@@ -9,6 +9,7 @@ import Select from "./Select";
 import Login from "./Login";
 import Input from "./input"
 import Protected from "./AuthLayout";
+import RTE from "./RTE";
 
 
-export { Header, Footer, LoadingSpinner, Logo, Logoutbtn, Container , Input , Postcard , Select , Login , Protected};
+export { Header, Footer, LoadingSpinner, Logo, Logoutbtn, Container , Input , Postcard , Select , Login , Protected , RTE};
