@@ -17,7 +17,7 @@ function Logoutbtn() {
 
   return (
     // <button className=''>Logout</button> // not using the tailwind one 
-    <button type="button" class="btn btn-primary hover:bg-blue-100">Logout</button>
+    <button type="button" class="btn btn-primary hover:bg-blue-100" onClick={handlelogout}>Logout</button>
   )
 }
 
