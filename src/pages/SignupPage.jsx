@@ -1,10 +1,10 @@
 import React from 'react'
-import {Signup as signupComp} from "../comps"
+import {Signup as SignupComp} from "../comps"
 
 function SignupPage() {
   return (
     <div className='py-8'>
-      <signupComp/>
+      <SignupComp/>
     </div>
   )
 }

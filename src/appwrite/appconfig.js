@@ -11,7 +11,7 @@ export class Service {
       .setEndpoint(Config.appwriteUrl)
       .setProject(Config.appwriteProjectId) ; 
     this.databases = new Databases(this.client) ; 
-    this.bucket = new Storage(this.client)
+    this.storage = new Storage(this.client)
   }
 
   async createPost({title , slug , content , featuredImage , status , userID }) {
@@ -21,11 +21,11 @@ export class Service {
         collectionId: Config.appwriteCollectionId , 
         documentId: slug,
         data : {
-          title ,
-          content , 
-          featuredImage , 
-          status , 
-          userID , 
+          Title : title ,
+          Content :content , 
+          FeaturedImage : featuredImage , 
+          Status : status ,          
+          userID : userID , 
         }
       })
     }
@@ -40,10 +40,10 @@ export class Service {
         collectionId: Config.appwriteCollectionId , 
         documentId: slug,
         data : {
-          title ,
-          content , 
-          featuredImage , 
-          status , 
+          Title : title ,
+          Content : content , 
+          FeaturedImage: featuredImage , 
+          Status: status , 
         }
       })
     }
@@ -68,7 +68,7 @@ export class Service {
   
   async getPost(slug){
     try{
-      return await this.databases.deleteDocument({
+      return await this.databases.getDocument({
         databaseId: Config.appwriteDatabaseId , 
         collectionId: Config.appwriteCollectionId , 
         documentId: slug,
@@ -95,8 +95,8 @@ export class Service {
   async uploadFile(file){
     try {
       return await this.storage.createFile({
-        bucketId: appwriteurBucketId ,
-        fileId: ID.unique,
+        bucketId: Config.appwriteBucketId ,
+        fileId: ID.unique(),
         file : file , 
       })
     } catch (error) {
@@ -107,7 +107,7 @@ export class Service {
   async deleteFile(fileId){
     try {
       await this.storage.deleteFile({
-        bucketId: appwriteurBucketId ,
+        bucketId: Config.appwriteBucketId ,
         fileId: fileId , 
       })
     } catch (error) {
@@ -117,10 +117,17 @@ export class Service {
   
   getFilePreview(fileId){
     return this.storage.getFilePreview({
-      bucketId: appwriteurBucketId ,
+      bucketId: Config.appwriteBucketId ,
       fileId: fileId , 
     })
   }
+
+  getFileView(fileId) {
+    return this.storage.getFileView({
+        bucketId: Config.appwriteBucketId,
+        fileId,
+    });
+}
   
 }
 

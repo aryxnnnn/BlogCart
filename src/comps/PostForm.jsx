@@ -6,43 +6,48 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function PostForm({post}) {
+    console.log("Post received:", post);
     const {register , handleSubmit , control , watch , setValue 
       , getValues} = useForm({
           defaultValues :{
-            title :post?.tite || '' ,
-            slug : post?.slug || '' , 
-            content : post?.content || '' , 
-            status : post?.status || 'active' , 
+            title :post?.Title || '' ,
+            slug : post?.$id || '' , 
+            content : post?.Content || '' , 
+            status : post?.Status || 'active' , 
 
           }    
     })
 
+    console.log(getValues());
+    
     const navigate = useNavigate() 
     const userData = useSelector((state)=> state.auth.userData)
 
     const submit = async(data ) =>{
-      if(post){
-        const file = data.image[0] ? service.uploadFile(data.image[0]) : null
+      if(post){  // edit post 
+        
+        const file = data.image[0] ? await service.uploadFile(data.image[0]) : null
 
         if(file){
-          service.deleteFile(post.featuredImage)
+          service.deleteFile(post.FeaturedImage)
         }
-        const dbPost = await service.updatePost(post.$id , {...data , featuredImage : file ? file.$id : undefined})
+        const dbPost = await service.updatePost(post.$id , {...data , FeaturedImage : file ? file.$id : undefined})
 
         if(dbPost){
           navigate(`/post/${post.$id}`)
         }
       }
-      else{
+      else{ // create new post 
         const file =  await service.uploadFile(data.image[0]) ;
 
         if(file){
           const fileId = file.$id 
           data.featuredImage = fileId
-          const dbPost = await service.createPost({...data , userID : userData.$id ,} )
+          // console.log(data  , userData.userData.$id)
+          const dbPost = await service.createPost({...data , userID : userData.userData.$id ,} )
 
           if(dbPost){
-            navigate(`/post/${post.$id}`)
+            navigate(`/post/${dbPost.$id}`)
           }
         }
       }
@@ -72,6 +77,7 @@ function PostForm({post}) {
       }
 
     },[watch , slugTransform , setValue])
+
   return (
     <form onSubmit={handleSubmit(submit)} className='flex flex-wrap'>
       <div className='px-2 w-2/3'>
@@ -105,7 +111,7 @@ function PostForm({post}) {
           />
           {post && (
             <div className='w-full mb-4'>
-              <img src={service.getFilePreview(post.featuredImage)} 
+              <img src={service.getFilePreview(post.FeaturedImage)} 
               alt={post.title} className='rounded-lg'/>
             </div>
           )}

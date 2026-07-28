@@ -10,7 +10,7 @@ import store from "./store/store.js";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
-import {Protected as AuthLayout} from "./comps/AuthLayout.jsx"
+import  AuthLayout from "./comps/AuthLayout.jsx"
 import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import AllPostPage from "./pages/AllPostPage.jsx";

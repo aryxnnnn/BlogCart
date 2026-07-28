@@ -8,16 +8,18 @@ function Logoutbtn() {
 
   const dispatch  = useDispatch() ; 
 
-  const handlelogout = () =>{
-    authService.Logout()
-    .then(()=>{
-      dispatch(AuthActions.logout())
-    })
-  }
+  const handlelogout = async () => {
+    try {
+      await authService.Logout();
+      dispatch(AuthActions.logout());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     // <button className=''>Logout</button> // not using the tailwind one 
-    <button type="button" class="btn btn-primary hover:bg-blue-100" onClick={handlelogout}>Logout</button>
+    <button type="button" className="btn btn-primary hover:bg-blue-100" onClick={handlelogout}>Logout</button>
   )
 }
 

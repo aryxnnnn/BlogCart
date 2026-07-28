@@ -40,11 +40,11 @@ function Header() {
       slug : "/add-post" , 
       active : authStatus , 
     } ,
-    { 
-      name : "Logout" , 
-      slug : "/add-post" , 
-      active : authStatus , 
-    } ,
+    // { 
+    //   name : "Logout" , 
+    //   slug : "/add-post" , // <-- this is the issue
+    //   active : authStatus , 
+    // } ,
   ]
 
   return <div className="pt-[10px] shadow bg-gray-500">
@@ -64,8 +64,9 @@ function Header() {
         </ul>
         {authStatus &&(
           <li>
-            <button onClick={() => navigate(item.slug)} className="btn btn-primary hover:bg-blue-300">Logout</button> 
+            {/* <button onClick={() => navigate("/login")} className="btn btn-primary hover:bg-blue-300">Logout</button>  */}
             {/* // not sure about the navigate , it has to take us back to login page  */}
+            <Logoutbtn/>
           </li>
         )}
       </nav>

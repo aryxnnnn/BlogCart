@@ -1,14 +1,14 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import authService, { Authservice } from "../appwrite/auth";
-import { AuthActions } from "../store/authSlice";
+import authService from "../appwrite/auth";
+import  {AuthActions}  from "../store/authSlice";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Logo from "./Logo";
+import Input from "./input";
 
 function Login() {
-  const authLogin = AuthActions.login;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -17,11 +17,11 @@ function Login() {
   const login = async (data) => {
     setError("");
     try {
-      const session = await Authservice.Login(data);
+      const session = await authService.Login(data);
       if (session) {
-        const userData = await Authservice.getCurrentUser();
+        const userData = await authService.getCurrentUser();
         if (userData) {
-          dispatch.authLogin(userData);
+          dispatch(AuthActions.login(userData)) ; 
           navigate("/");
         }
       }
