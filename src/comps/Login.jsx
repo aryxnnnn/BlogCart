@@ -31,12 +31,12 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
-      <div className="mx-auto w-full w-max-lg bg-gray-400 rounded-xl p-10 border border-slate-800">
+    <div className="flex items-center justify-center mx-[25%]">
+      <div className="mx-auto w-full w-max-lg bg-gray-100 rounded-xl p-10 border border-slate-800 mt-7 shadow-xl ">
         <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full w-max-[100px]">
+          {/* <span className="inline-block w-full w-max-[100px]">
             <Logo width="100%"></Logo>
-          </span>
+          </span> */}
         </div>
 
         <h2 className="leading-tight text-center font-bold text-2xl">
@@ -56,6 +56,7 @@ function Login() {
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="s-y-5">
             <Input
+              className="mb-4"
               label="Email:"
               placeholder="Enter your mail"
               type="email"
@@ -68,6 +69,7 @@ function Login() {
               })}
             />
             <Input
+              className="mb-4"
               label="Passowrd"
               placeholder="Enter your password"
               type="password"

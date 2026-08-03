@@ -31,15 +31,15 @@ function App() {
     });
   }, []);
 
-  return ( <div className="min-h-screen flex flex-wrap content-between bg-slate-500">
-      <div className="w-full block text-2xl">
-        <Header />
-        <main>
-          {Loading ? <LoadingSpinner /> : <Outlet />}
-        </main>
-        <Footer />
-      </div>
+  return (
+    <div className="min-h-screen flex flex-col bg-white text-2xl">
+      <Header />
+      <main className="flex-1 bg-gray-50">
+        {Loading ? <LoadingSpinner /> : <Outlet />}
+      </main>
+      <Footer />
     </div>
+  
   );
 }
 

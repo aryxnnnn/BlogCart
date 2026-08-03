@@ -47,12 +47,12 @@ function Header() {
     // } ,
   ]
 
-  return <div className="pt-[10px] shadow bg-gray-500">
+  return <div className="pt-[10px] shadow bg-white">
     <Container>
       <nav className="flex">
         <div className="mr-4">
           <Link to ='/' className=" text-black text-decoration-none ">
-            <Logo className="w-[70px] mx-2 "></Logo>
+            <Logo className="w-[70px] mx-2"></Logo>
           </Link>
         </div>
         <ul className="flex ml-auto">

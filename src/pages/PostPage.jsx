@@ -53,32 +53,47 @@ if(post && userData){
   };
 
   return post ? (
-    <div className="py-8">
+    <div className="py-10">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-          <img
-            src={service.getFileView(post.FeaturedImage)}
-            alt={post.title}
-            className="rounded-xl"
-          />
 
-          {isAuthor && (
-            <div className="absolute right-6 top-6">
-              <Link to={`/edit-post/${post.$id}`}>
-                <button type="button" className="btn btn-warning mr-3">
-                  Edit
+        {/* Title */}
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl  text-slate-900 " style={{ fontFamily: "Satisfy, cursive" }}>
+            {post.Title}
+          </h1>
+        </div>
+
+        {/* Featured Image */}
+        <div className="flex justify-center mb-10 relative">
+          <div className="relative inline-block">
+            <img
+              src={service.getFileView(post.FeaturedImage)}
+              alt={post.Title}
+              className="max-w-[70vw] max-h-[60vh] w-auto h-auto rounded-2xl shadow-lg"
+            />
+            {isAuthor && (
+              <div className="absolute top-5 right-5 flex gap-3">
+                <Link to={`/edit-post/${post.$id}`}>
+                  <button className="btn btn-warning">
+                    Edit
+                  </button>
+                </Link>
+                <button
+                  onClick={deletePost}
+                  className="btn btn-danger"
+                >
+                  Delete
                 </button>
-              </Link>
-              <button onClick={deletePost} className="btn btn-danger">
-                Delete
-              </button>
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </div>
-        <div className="w-full mb-6">
-          <h1 className="text-2xl font-bold">{post.title}</h1>
+
+        {/* Content */}
+        <div className="max-w-4xl mx-auto browser-css text-[25px] leading-8">
+          {parse(post.Content)}
         </div>
-        <div className="browser-css">{parse(post.Content)}</div>
+
       </Container>
     </div>
   ) : null;

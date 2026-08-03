@@ -20,15 +20,21 @@ function Postcard({ post }) {
     
 
     return <div>
-        <Link to = {`/post/${$id}`}>
-          <div className='w-full bg-gray-600 rounded-2xl p-4'>
-            <div className='w-full justify-center mb-4'>
-              <img src={preview} alt="Postimg" className='rounded-lg'/>
-              <h2 className='text-xl font-bold text-gray-800'>{Title}</h2>
-            </div>
-          </div>
+        <Link
+          to={`/post/${$id}`}
+          className="block !no-underline !text-slate-800"
+        >
+        <div className="w-full h-[340px] bg-gray-200 rounded-2xl p-4">
+          <img
+            src={preview}
+            alt="Post"
+            className="w-full h-56 object-cover rounded-lg"
+          />
+          <h2 className="mt-3 !text-[23px] !font-normal  truncate">
+            {Title}
+          </h2>
+        </div>
         </Link>
-
     </div>
     }
 }
